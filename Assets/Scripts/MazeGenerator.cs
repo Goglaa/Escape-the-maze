@@ -36,7 +36,7 @@ public class MazeGenerator : MonoBehaviour
     {
         if (groundPrefab != null)
         {
-            GameObject ground = Instantiate(groundPrefab, new Vector3(mazeTexture.width / 2f, 0, mazeTexture.height / 2f), Quaternion.identity);
+            GameObject ground = Instantiate(groundPrefab, new Vector3(mazeTexture.width / 2f, -0.1f, mazeTexture.height / 2f), Quaternion.identity);
 
             ground.transform.localScale = new Vector3(mazeTexture.width, 1, mazeTexture.height);
             

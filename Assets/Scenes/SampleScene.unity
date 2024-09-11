@@ -261,7 +261,7 @@ MonoBehaviour:
   mazeTexture: {fileID: 2800000, guid: c2541d2ce803a68489994a2213d0fae4, type: 3}
   wallPrefab: {fileID: 4051016863957645531, guid: aa406112c94522f40abeccc381e51cb5, type: 3}
   wallHeight: 2
-  groundPrefab: {fileID: 7199790432523112868, guid: bb07266c029fbb243a95fc83d79c6f5b, type: 3}
+  groundPrefab: {fileID: 2523662124876810218, guid: 36718f520c6ebeb4784fdaf7a4aea2d0, type: 3}
 --- !u!4 &594980155
 Transform:
   m_ObjectHideFlags: 0
@@ -633,11 +633,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   groundDrag: 6
-  jumpForce: 12
+  jumpForce: 10
   jumpCooldown: 0.25
   airMultiplier: 0.4
+  walkSpeed: 0
+  sprintSpeed: 0
   jumpKey: 32
-  playerHeight: 2
+  playerHeight: 1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
