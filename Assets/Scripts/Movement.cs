@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerMovementTutorial : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
@@ -35,6 +35,13 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     Rigidbody rb;
 
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,8 +54,6 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
         // ground check
         grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, -Vector3.up, playerHeight * 0.5f + 0.3f, whatIsGround);
-
-        Debug.Log(transform.position);
 
         MyInput();
         SpeedControl();
@@ -63,6 +68,11 @@ public class PlayerMovementTutorial : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+
+        if(rb.position.y < -5f)
+        {
+            FindObjectOfType<GameManager>().EndGame();
+        }
     }
 
     private void MyInput()
@@ -71,12 +81,13 @@ public class PlayerMovementTutorial : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        // grounded doesnt work at the moment 
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
 
             Jump();
+
+            audioManager.PlaySFX(audioManager.jump, 2.0f);
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
